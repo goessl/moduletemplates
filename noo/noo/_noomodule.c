@@ -10,17 +10,17 @@ static PyObject* foo(PyObject* self, PyObject* args) {
     return PyNumber_Add(a, b);
 }
 
-static PyMethodDef Methods[] = {
+static PyMethodDef methods[] = {
     {"foo", foo, METH_VARARGS, "foo C implementation."},
     {NULL, NULL, 0, NULL}
 };
 
 static struct PyModuleDef module = {
-    PyModuleDef_HEAD_INIT,
-    "_noo",
-    "C extension providing foo",
-    -1,
-    Methods
+    .m_base = PyModuleDef_HEAD_INIT,
+    .m_name = "_noo",
+    .m_doc = "C extension providing foo",
+    .m_size = -1,
+    .m_methods = methods
 };
 
 PyMODINIT_FUNC PyInit__noo(void) {
